@@ -2,17 +2,15 @@ import json
 import requests
 import subprocess as sp
 
-
+url = "https://api.rootnet.in/covid19-in/stats/latest"
+response = requests.get(url)
+parsed=response.text
+data=json.loads(parsed)
 
 
 
 def official_data(CVD):
-
-    url = "https://api.rootnet.in/covid19-in/stats/latest"
-    response = requests.get(url)
-    parsed=response.text
-    data=json.loads(parsed)
-
+    
     #data printing of official data
     CVD['cc'] = data['data']['summary']['total']
 
@@ -28,10 +26,7 @@ def official_data(CVD):
 
 
 def state_data(state, CVD):
-    url = "https://api.rootnet.in/covid19-in/stats/latest"
-    response = requests.get(url)
-    parsed=response.text
-    data=json.loads(parsed)
+    
     #data printing of state data
     state_info = data['data']['regional'][state]
 
