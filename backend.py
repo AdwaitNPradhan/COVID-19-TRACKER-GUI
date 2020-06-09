@@ -7,10 +7,7 @@ response = requests.get(url)
 parsed=response.text
 data=json.loads(parsed)
 
-
-
 def official_data(CVD):
-    
     #data printing of official data
     CVD['cc'] = data['data']['summary']['total']
 
@@ -26,8 +23,6 @@ def official_data(CVD):
 
 
 def state_data(state, CVD):
-    
-    #data printing of state data
     state_info = data['data']['regional'][state]
 
     CVD['cc'] = state_info['totalConfirmed']
@@ -41,4 +36,10 @@ def state_data(state, CVD):
     CVD['dead'] = state_info['deaths']
 
     CVD['active'] = CVD['cc']-(CVD['recv']+CVD['dead'])
-
+#Test code to see the number of states
+# for state in range(39):
+#     try:
+#         print("%s: '%s'" % (state,data['data']['regional'][state]['loc']),end = "\n")  
+#     except IndexError:
+#         print("\nBREAKING\n-")
+#         break
